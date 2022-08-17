@@ -2,7 +2,11 @@ import { useState } from 'react'
 import Login from './Login/index'
 import Sidebar from './Sidebar/sidebar'
 import Dasborad from './pages/Dassboard/dasboard'
+import Inventario from './pages/Inventario/inventario'
 import ReactDOM from "react-dom/client";
+import { AuthContextProvider } from './context/AuthContex'
+import { PublicRoutes } from './Component/Route/PublicRoute'
+import { PrivateRoutes } from './Component/Route/PrivateRoute'
 import {
   BrowserRouter,
   Routes,
@@ -18,13 +22,24 @@ function App() {
         <Sidebar />
         : <Login />
       } */}
-      <BrowserRouter>
-        <Sidebar>
+      <AuthContextProvider>
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Dasborad />} />
+            <Route path="/login" element={<PublicRoutes />}>
+              <Route index element={<Login />} />
+            </Route>
           </Routes>
-        </Sidebar>
-      </BrowserRouter>
+          <Sidebar>
+            <Routes>
+              <Route path="/" element={<PrivateRoutes />}>
+                <Route index element={<Dasborad />} />
+                <Route path="/Inventario" element={<Inventario />} />
+              </Route>
+            </Routes>
+          </Sidebar>
+        </BrowserRouter>
+      </AuthContextProvider>
+
     </>
   )
 }

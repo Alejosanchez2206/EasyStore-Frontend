@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-
+import { useAuthContent } from '../context/AuthContex'
 export default class login extends Component {
     render() {
         return (
             <>
-                <div className="bg- px-10 py-20 rounded-3xl border-2 border-gray-500">
+                <div className="px-10 py-20 rounded-3xl border-2 border-gray-500">
                     <h1 className="text-4xl font-semibold font-color text-white">Bienvenido de vuelta</h1>
                     <div className="mt-8">
                         <div>
